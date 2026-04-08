@@ -1,62 +1,72 @@
+import ShipmentDetailsPage from '@/app/src/features/shipments/ShipmentDetailsPage'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Ship } from 'lucide-react'
 
 const tabs = [
   {
-    name: 'Explore',
-    value: 'explore',
+    name: 'SHIPMENT DETAILS',
+    value: 'SHIPMENT_DETAILS',
     content: (
-      <>
-        Discover <span className='text-foreground font-semibold'>fresh ideas</span>, trending topics, and hidden gems
-        curated just for you. Start exploring and let your curiosity lead the way!
-      </>
+      <ShipmentDetailsPage />
     )
   },
   {
-    name: 'Favorites',
-    value: 'favorites',
+    name: 'PHOTOS',
+    value: 'PHOTOS',
     content: (
-      <>
-        All your <span className='text-foreground font-semibold'>favorites</span> are saved here. Revisit articles,
-        collections, and moments you love, any time you want a little inspiration.
-      </>
+      <div className='rounded-xl border border-white/10 bg-[#0b1220] p-4 text-sm text-white/80'>
+        Photos content goes here.
+      </div>
     )
   },
   {
-    name: 'Surprise Me',
-    value: 'surprise',
+    name: 'ACTIVITY',
+    value: 'ACTIVITY',
     content: (
-      <>
-        <span className='text-foreground font-semibold'>Surprise!</span> Here&apos;s something unexpected—a fun fact, a
-        quirky tip, or a daily challenge. Come back for a new surprise every day!
-      </>
+      <div className='rounded-xl border border-white/10 bg-[#0b1220] p-4 text-sm text-white/80'>
+        Activity content goes here.
+      </div>
     )
   }
 ]
 
-const TabsUnderlineDemo = () => {
+export default function TabsUnderlineDemo() {
   return (
-    <div className='w-full max-w-md'>
-      <Tabs defaultValue='explore' className='gap-4'>
-        <TabsList className='bg-background rounded-none border-b p-0'>
+    <div className='w-full max-w-3xl  bg-gray-900 p-4 text-white'>
+      <Tabs defaultValue='SHIPMENT_DETAILS' className='gap-2'>
+        <div className='flex justify-between items-center'>
+        <TabsList className='h-auto w-full gap-2 bg-transparent'>
           {tabs.map(tab => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className='bg-background data-[state=active]:border-primary dark:data-[state=active]:border-primary h-full rounded-none border-0 border-b-2 border-transparent data-[state=active]:shadow-none!'
+              className="
+                 h-10 rounded-none border-0 border-b-2 border-transparent
+                bg-transparent px-0 pb-3 pt-2 text-sm font-semibold
+                text-white uppercase cursor-pointer hover:text-white/80
+                transition-all
+                data-[state=active]:border-[#2f7df6]
+                data-[state=active]:bg-transparent
+                data-[state=active]:text-[#7fb2ff]
+              "
             >
               {tab.name}
             </TabsTrigger>
           ))}
         </TabsList>
+        <p className='uppercase'>+ Add assignment</p>
+        </div>
 
         {tabs.map(tab => (
-          <TabsContent key={tab.value} value={tab.value}>
-            <p className='text-muted-foreground text-sm'>{tab.content}</p>
+          <TabsContent
+            key={tab.value}
+            value={tab.value}
+            className='mt-4 focus-visible:outline-none focus-visible:ring-0'
+          >
+            {tab.content}
           </TabsContent>
         ))}
       </Tabs>
     </div>
   )
 }
-
-export default TabsUnderlineDemo
