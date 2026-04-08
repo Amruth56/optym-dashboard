@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../reusable/components/Navbar";
 import CardsComponent from "../../reusable/components/cards/CardsComponent";
+import TabsUnderlineDemo from "../../reusable/components/tabs/TabsComponent";
 
 const ShipmentCardData = [
   {
@@ -36,6 +37,7 @@ const shipmentsPage = () => {
        
       ))}
        </div>
+       <TabsUnderlineDemo/>
     </div>
   );
 };
