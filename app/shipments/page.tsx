@@ -1,11 +1,9 @@
 import React from 'react'
-import Navbar from '../src/reusable/components/Navbar'
-
+import ShipmentsPage from '../src/shipments/shipmentsPage'
 const page = () => {
   return (
-    <div>
-        <Navbar />
-      shipments page
+      <div>
+          <ShipmentsPage/>
     </div>
   )
 }

@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <div>
       <header>
-        <div className="flex m-2 p-4 items-center font-semibold text-sm">
+        <div className="flex m-2 p-4 items-center font-semibold text-sm p-4">
           <div className="flex justify-between items-center w-full">
             <div className="flex gap-4">
               <h1 className="font-bold text-blue-500 text-3xl">O</h1>
