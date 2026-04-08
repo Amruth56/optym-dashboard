@@ -1,0 +1,120 @@
+{
+    "proNumber": "10837094940",
+    "taskStatus": "Unloading",
+    "lifeCycleSteps": [
+        {
+            "state": "current",
+            "action": "Load to Trailer",
+            "info": "T-287215",
+            "assignedTo": [
+                {
+                    "assignedToId": "usr-richard",
+                    "assignedToName": "Richard G"
+                }
+            ],
+            "origin": {
+                "displayName": "Bay 59",
+                "locationType": "Bay",
+                "id": "bay-59",
+                "name": "59",
+                "trailerNumber": null,
+                "manifestNumber": null
+            },
+            "destination": {
+                "displayName": "Door 47",
+                "locationType": "Door",
+                "id": "door-47",
+                "name": "47",
+                "trailerNumber": null,
+                "manifestNumber": null
+            },
+            "estimatedStartTime": null,
+            "estimatedEndTime": null
+        }
+    ],
+    "activities": [
+        {
+            "timeLabel": null,
+            "label": "Arrive at D20.",
+            "metaLabel": "ETA:17:50."
+        },
+        {
+            "timeLabel": "2 min ago",
+            "label": "Close Trailer T-287359",
+            "metaLabel": "Assigned by DockAi"
+        },
+        {
+            "timeLabel": "20 min ago",
+            "label": "Load Trailer T-287359",
+            "metaLabel": null
+        }
+    ],
+    "location": "P&D",
+    "pickupDate": "03/04/2026",
+    "nextTerminal": null,
+    "currentTerminal": "FTW",
+    "imagesURL": [],
+    "originTerminal": "FTW",
+    "destinationTerminal": "ELP",
+    "purchaseOrder": "",
+    "bolNumber": "",
+    "terms": "",
+    "shipper": {
+        "number": "",
+        "name": "CARDINAL HEALTH AT HOME SOLUTI",
+        "address": "3000 MARK IV PKWY",
+        "city": "FORT WORTH",
+        "state": "TX",
+        "zip": "76106"
+    },
+    "consignee": {
+        "number": "9900029",
+        "name": "RESPMED",
+        "address": "",
+        "city": "EL PASO",
+        "state": "TX",
+        "zip": "79925"
+    },
+    "clientShipmentStatus": {
+        "id": 9,
+        "clientCode": "ORIGIN DOCK",
+        "displayName": "ORIGIN DOCK",
+        "code": "ODK"
+    },
+    "assignedToName": null,
+    "timeToComplete": 0,
+    "lhLoadTo": null,
+    "lhDoor": null,
+    "lhLoadType": null,
+    "cityRouteName": "062_1",
+    "recommendedLoadingZone": "T",
+    "stopSequence": 2,
+    "service": null,
+    "deliverySchedule": {
+        "dueDate": "03/05/2026",
+        "appointmentDate": null,
+        "appointmentStart": null,
+        "appointmentEnd": null,
+        "earliestDeliveryDate": null,
+        "latestDeliveryDate": null
+    },
+    "cubicFeet": 26,
+    "pse": 0,
+    "totalHu": 1,
+    "pieces": 23,
+    "palletCount": 0,
+    "packageType": "",
+    "specialNeeds": [],
+    "totalWeight": 238,
+    "returnReason": null,
+    "earliestDeliveryDate": null,
+    "latestDeliveryDate": null,
+    "advInterline": null,
+    "bydInterline": null,
+    "trailerRequirements": {
+        "minTrailer": 0,
+        "maxTrailer": 0,
+        "fixedTrailer": 0
+    },
+    "trailerNumber": null
+}
