@@ -38,16 +38,21 @@ const Tag = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
-export default function TabsUnderlineDemo() {
+type TabsUnderlineDemoProps = {
+  selectedProNumber?: string;
+};
+
+export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDemoProps) {
   const currentStep = ShipmentDetails.lifeCycleSteps?.[0];
-    const route = currentStep ? `${currentStep.origin.displayName} → ${currentStep.destination.displayName}` : "--";
+  const route = currentStep ? `${currentStep.origin.displayName} → ${currentStep.destination.displayName}` : "--";
+  const proNumberLabel = selectedProNumber ?? ShipmentDetails.proNumber;
 
   return (
     <div className='w-full max-w-xl  bg-gray-900 p-4 text-white overflow-hidden'>
-       <div className="flex flex-wrap items-center gap-3 text-xs uppercase ">
-              <span className="font-semibold text-white text-3xl">PRO {ShipmentDetails.proNumber}</span>
-              <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">{ShipmentDetails.taskStatus}</span>
-            </div>
+      <div className="flex flex-wrap items-center gap-3 text-xs uppercase ">
+        <span className="font-semibold text-white text-3xl">PRO {proNumberLabel}</span>
+        <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">{ShipmentDetails.taskStatus}</span>
+      </div>
       <div className="mb-6 rounded-md border border-white/10 bg-gray-800 p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-4">

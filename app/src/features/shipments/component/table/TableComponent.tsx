@@ -8,8 +8,12 @@ import { themeQuartz } from "ag-grid-community";
 import type { ShipmentList } from './TableTypes';
 import ShipmentListData from '../../../../JsonData/ShipmentList.json';
 
-const TableComponent = () => {
-    const gridRef = useRef<AgGridReact<ShipmentList>>(null);
+type TableComponentProps = {
+  onProSelected?: (proNumber: string) => void;
+};
+
+const TableComponent = ({ onProSelected }: TableComponentProps) => {
+  const gridRef = useRef<AgGridReact<ShipmentList>>(null);
   const [rowData] = useState<ShipmentList[]>(ShipmentListData as ShipmentList[]);
 
     const theme = themeQuartz
@@ -43,11 +47,17 @@ const TableComponent = () => {
     flex: 1,
   };
   
-const TextFilter = useCallback(() =>{
-  const value = (document.getElementById('filter-text-box') as HTMLInputElement)?.value ?? '';
-  gridRef.current?.api.setGridOption('quickFilterText', value);
-}, []);
+  const TextFilter = useCallback(() =>{
+    const value = (document.getElementById('filter-text-box') as HTMLInputElement)?.value ?? '';
+    gridRef.current?.api.setGridOption('quickFilterText', value);
+  }, []);
 
+  const handleRowClick = useCallback((event: any) => {
+    const proNumber = event.data?.proNumber;
+    if (proNumber && onProSelected) {
+      onProSelected(proNumber);
+    }
+  }, [onProSelected]);
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
@@ -70,6 +80,7 @@ const TextFilter = useCallback(() =>{
           rowData={rowData}
           columnDefs={colDefs}
           defaultColDef={defaultColDef}
+          onRowClicked={handleRowClick}
         />
       </div>
     </AgGridProvider>
