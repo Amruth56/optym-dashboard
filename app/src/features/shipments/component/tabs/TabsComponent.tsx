@@ -1,46 +1,8 @@
-import ShipmentDetailsPage from '@/app/src/features/shipments/ShipmentDetailsPage'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ShipmentDetails from '../../../../JsonData/ShipmentDetail.json'
+import { TabsData} from './TabsHelperComponent';
+import { TabsUnderlineDemoProps } from './TabsTypes';
 
-
-const tabs = [
-  {
-    name: 'SHIPMENT DETAILS',
-    value: 'SHIPMENT_DETAILS',
-    content: (
-      <ShipmentDetailsPage />
-    )
-  },
-  {
-    name: 'PHOTOS',
-    value: 'PHOTOS',
-    content: (
-      <div className='rounded-xl border border-white/10 bg-[#0b1220] p-4 text-sm text-white/80'>
-        Photos content goes here.
-      </div>
-    )
-  },
-  {
-    name: 'ACTIVITY',
-    value: 'ACTIVITY',
-    content: (
-      <div className='rounded-xl border border-white/10 bg-[#0b1220] p-4 text-sm text-white/80'>
-        Activity content goes here.
-      </div>
-    )
-  }
-]
-
-
-const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex rounded-full bg-slate-800/80 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-slate-300">
-    {children}
-  </span>
-);
-
-type TabsUnderlineDemoProps = {
-  selectedProNumber?: string;
-};
 
 export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDemoProps) {
   const currentStep = ShipmentDetails.lifeCycleSteps?.[0];
@@ -54,7 +16,7 @@ export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDe
         <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">{ShipmentDetails.taskStatus}</span>
       </div>
       <div className="mb-6 rounded-md border border-white/10 bg-gray-800 p-6">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex  gap-4 flex-row items-center justify-between">
           <div className="space-y-4">
            
             <h1 className="text-sm font-semibold tracking-tight text-gray-300">Current Assignment | <span className='text-white'> {ShipmentDetails.lifeCycleSteps?.[0]?.action} | {ShipmentDetails.lifeCycleSteps?.[0]?.info} </span></h1>
@@ -76,7 +38,7 @@ export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDe
       <Tabs defaultValue='SHIPMENT_DETAILS' className='gap-2'>
         <div className='flex justify-between items-center'>
         <TabsList className='h-auto w-full gap-2 bg-transparent'>
-          {tabs.map(tab => (
+          {TabsData.map(tab => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
@@ -97,7 +59,7 @@ export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDe
         <p className='uppercase'>+ Add assignment</p>
         </div>
 
-        {tabs.map(tab => (
+        {TabsData.map(tab => (
           <TabsContent
             key={tab.value}
             value={tab.value}

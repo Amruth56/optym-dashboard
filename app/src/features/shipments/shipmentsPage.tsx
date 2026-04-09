@@ -6,26 +6,8 @@ import Navbar from "../../reusable/components/Navbar";
 import CardsComponent from "../../reusable/components/cards/CardsComponent";
 import TabsUnderlineDemo from "./component/tabs/TabsComponent";
 import TableComponent from "./component/table/TableComponent";
+import { ShipmentCardData } from "./ShipmentHelperComponent";
 
-const ShipmentCardData = [
-  {
-    number: "5.3",
-    description: "Overall Bills /Hr",
-  },
-  {
-    number: "9023",
-    description: "Load Average: Loading and Closed",
-  },
-  { number: "25412", description: "Closed Load Average" },
-  {
-    number: "37",
-    description: " # Dockers Working",
-  },
-  {
-    number: "5",
-    description: "Dockers Unassigned",
-  },
-];
 
 const shipmentsPage = () => {
   const router = useRouter();

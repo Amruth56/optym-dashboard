@@ -1,49 +1,10 @@
 import React from "react";
-import { ShipmentDetail, ShipmentDetailsPanelProps, ShipmentTableRow } from "./ShipmentsTypes";
-
-const InfoRow = ({ label, value }: { label: string; value: string | number | null }) => (
-  <div className="flex justify-between gap-4 text-sm text-slate-300">
-    <span className="text-slate-400">{label}</span>
-    <span className="font-medium text-white">{value || "--"}</span>
-  </div>
-);
-
-const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex rounded-full bg-slate-800/80 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-slate-300">
-    {children}
-  </span>
-);
-
-const shipmentTableRows: ShipmentTableRow[] = [
-  {
-    pc: 1,
-    hm: "",
-    pkg: "PT",
-    description: "BUSHINGS",
-    class: 70,
-    weight: 174,
-    rate: "",
-  },
-  {
-    description: "FUEL SURCHARGE",
-    class: "FS",
-    weight: "",
-    rate: "",
-  },
-  {
-    description: "SINGLE SHIPMENT CHARGE",
-    class: "SS",
-    weight: "",
-    rate: "",
-  },
-];
+import { ShipmentDetailsPanelProps } from "./ShipmentsTypes";
+import { shipmentTableRows, InfoRow } from "./ShipmentHelperComponent";
 
 export default function ShipmentDetailsPanel({
   shipment,
 }: ShipmentDetailsPanelProps) {
-  const currentStep = shipment.lifeCycleSteps?.[0];
-  const firstAssignee =
-    currentStep?.assignedTo?.[0]?.assignedToName || "Unassigned";
 
   return (
     <div className="space-y-6">
@@ -51,12 +12,30 @@ export default function ShipmentDetailsPanel({
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-3xl bg-slate-950/80 p-5">
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Pickup date</p>
-              <p className="mt-3 text-2xl font-semibold text-white">{shipment.pickupDate}</p>
+              <InfoRow
+                label="Pickup Date"
+                value={shipment.pickupDate || "--"}
+              />
+              <InfoRow label="Pro Number" value={shipment.proNumber || "--"} />
+              <InfoRow
+                label="Due Date"
+                value={shipment.deliverySchedule?.dueDate || "--"}
+              />
             </div>
-            <div className="rounded-3xl bg-slate-950/80 p-5">
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Due date</p>
-              <p className="mt-3 text-2xl font-semibold text-white">{shipment.deliverySchedule.dueDate}</p>
+            <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
+              <InfoRow
+                label="Current terminal"
+                value={shipment?.currentTerminal}
+              />
+              <InfoRow
+                label="Next terminal"
+                value={shipment?.nextTerminal || "--"}
+              />
+              <InfoRow
+                label="Shipment Status"
+                value={shipment?.clientShipmentStatus?.displayName || "--"}
+              />
+              <InfoRow label="Location" value={shipment?.location} />
             </div>
           </div>
           </section>
@@ -99,6 +78,8 @@ export default function ShipmentDetailsPanel({
           </div>
         </section>
       </div>
+
+      
 {/* shipment table */}
       <section className="rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
         <div className="overflow-x-auto">

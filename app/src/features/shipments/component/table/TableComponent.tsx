@@ -14,7 +14,7 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
   const gridRef = useRef<AgGridReact<ShipmentList>>(null);
   const [rowData] = useState<ShipmentList[]>(ShipmentListData as ShipmentList[]);
 
-    const theme = themeQuartz
+  const theme = themeQuartz
   .withParams(
     {
       backgroundColor: "#000000",
