@@ -2,7 +2,6 @@
 
 import React, { useCallback, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Navbar from "../../reusable/components/Navbar";
 import CardsComponent from "../../reusable/components/cards/CardsComponent";
 import TabsUnderlineDemo from "./component/tabs/TabsComponent";
 import TableComponent from "./component/table/TableComponent";
@@ -37,7 +36,6 @@ const shipmentsPage = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="grid grid-cols-5 gap-4 m-4">
         {ShipmentCardData.map((card, index) => (
           <CardsComponent

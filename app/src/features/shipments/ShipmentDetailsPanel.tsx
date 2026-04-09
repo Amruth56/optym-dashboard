@@ -81,11 +81,11 @@ export default function ShipmentDetailsPanel({
 
       
 {/* shipment table */}
-      <section className="rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
-        <div className="overflow-x-auto">
+      <section className="rounded-md border border-white/10 bg-[#06101c]/80 p-5">
+        <div className="overflow-x-auto  no-scrollbar">
           <table className="min-w-full border-collapse text-sm text-slate-300">
             <thead>
-              <tr className="border-b border-white/10 text-left text-xs uppercase tracking-[0.24em] text-slate-500">
+              <tr className="border-b border-white/10   text-left text-xs uppercase tracking-[0.24em] font-bold">
                 <th className="px-4 py-3 w-12">PC</th>
                 <th className="px-4 py-3 w-14">HM</th>
                 <th className="px-4 py-3 w-14">PKG</th>
@@ -99,7 +99,6 @@ export default function ShipmentDetailsPanel({
               {shipmentTableRows.map((row, index) => (
                 <tr
                   key={index}
-                  className={index % 2 === 0 ? "bg-white/2" : "bg-transparent"}
                 >
                   <td className="border-b border-white/10 px-4 py-3 font-semibold text-white">
                     {row.pc ?? ""}
