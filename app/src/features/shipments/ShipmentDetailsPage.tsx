@@ -4,7 +4,7 @@ import shipmentDetail from "../../JsonData/ShipmentDetail.json";
 
 const ShipmentDetailsPage = () => {
   return (
-    <div className="px-4 pb-8 pt-6 text-white sm:px-6 lg:px-8">
+    <div className="">
       <ShipmentDetailsPanel shipment={shipmentDetail} />
     </div>
   );

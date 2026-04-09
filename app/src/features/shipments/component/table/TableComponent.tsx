@@ -1,14 +1,29 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import type { ColDef } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { AgGridProvider, AgGridReact } from 'ag-grid-react';
+import { themeQuartz } from "ag-grid-community";
 import type { ShipmentList } from './TableTypes';
 import ShipmentListData from '../../../../JsonData/ShipmentList.json';
 
 const TableComponent = () => {
+    const gridRef = useRef<AgGridReact<ShipmentList>>(null);
   const [rowData] = useState<ShipmentList[]>(ShipmentListData as ShipmentList[]);
+
+    const theme = themeQuartz
+  .withParams(
+    {
+      backgroundColor: "#000000",
+      browserColorScheme: "dark",
+    },
+    "dark",
+  );
+
+  useEffect(() => {
+    document.body.dataset.agThemeMode = 'dark';
+  }, []);
 
   const colDefs = useMemo<ColDef<ShipmentList>[]>(() => [
     { field: 'proNumber' },
@@ -27,11 +42,31 @@ const TableComponent = () => {
   const defaultColDef: ColDef<ShipmentList> = {
     flex: 1,
   };
+  
+const TextFilter = useCallback(() =>{
+  const value = (document.getElementById('filter-text-box') as HTMLInputElement)?.value ?? '';
+  gridRef.current?.api.setGridOption('quickFilterText', value);
+}, []);
+
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="w-full h-full" style={{ height: '100vh' }}>
+      <div className=" w-full" style={{ height: '100vh' }}>
+        <div className='flex justify-between'>
+        <h1 className='text-3xl'>2500 Shipments</h1>
+        <div className="example-header">
+            <input
+              type="text"
+              id="filter-text-box"
+              placeholder="Search"
+              onInput={TextFilter}
+              className='border rounded-md border-gray-400 p-2'
+            />
+          </div>
+        </div>
         <AgGridReact<ShipmentList>
+           ref={gridRef}
+          theme={theme}
           rowData={rowData}
           columnDefs={colDefs}
           defaultColDef={defaultColDef}
