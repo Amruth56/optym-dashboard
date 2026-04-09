@@ -19,7 +19,7 @@ export default function ShipmentDetailsPanel({ shipment }: ShipmentDetailsPanelP
   const firstAssignee = currentStep?.assignedTo?.[0]?.assignedToName || "Unassigned";
 
   return (
-    <div className="mx-auto max-w-6xl rounded-[32px] border border-white/10 bg-[#08101b] p-6 text-white shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
+    <div className="">
       
 
       <div className="grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">

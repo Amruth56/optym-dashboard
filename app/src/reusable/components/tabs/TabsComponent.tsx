@@ -44,27 +44,27 @@ export default function TabsUnderlineDemo() {
 
   return (
     <div className='w-full max-w-3xl  bg-gray-900 p-4 text-white'>
-       <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-slate-400">
+       <div className="flex flex-wrap items-center gap-3 text-xs uppercase ">
               <span className="font-semibold text-white text-3xl">PRO {ShipmentDetails.proNumber}</span>
-              <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-emerald-300">{ShipmentDetails.taskStatus}</span>
+              <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">{ShipmentDetails.taskStatus}</span>
             </div>
-      <div className="mb-6 rounded-[28px] border border-white/10 bg-white/5 p-6">
+      <div className="mb-6 rounded-md border border-white/10 bg-gray-800 p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-4">
            
-            <h1 className="text-3xl font-semibold tracking-tight text-white">Current Assignment | {ShipmentDetails.lifeCycleSteps?.[0]?.action} | {ShipmentDetails.lifeCycleSteps?.[0]?.info}</h1>
+            <h1 className="text-sm font-semibold tracking-tight text-gray-300">Current Assignment | <span className='text-white'> {ShipmentDetails.lifeCycleSteps?.[0]?.action} | {ShipmentDetails.lifeCycleSteps?.[0]?.info} </span></h1>
             <div className="flex flex-wrap gap-3 text-sm text-slate-300">
               <span>{route}</span>
               <span>•</span>
-              <span>{ShipmentDetails.location}</span>
+              <span>{ShipmentDetails?.lifeCycleSteps?.[0]?.info}</span>
               <span>•</span>
-              <span>{ShipmentDetails.currentTerminal}</span>
+              <span>{ShipmentDetails.lifeCycleSteps?.[0]?.assignedTo?.[0]?.assignedToName}</span>
             </div>
           </div>
 
-          <div className="grid gap-2 sm:grid-cols-2">
-            <Tag>{ShipmentDetails.clientShipmentStatus.displayName}</Tag>
-            <Tag>{ShipmentDetails.recommendedLoadingZone || "Zone T"}</Tag>
+          <div className="grid gap-2 sm:grid-rows-2 ">
+            <span className='text-sm text-slate-300'>4 mins remaining</span>
+            <span className="text-blue-300 flex justify-end">CHANGE</span>
           </div>
         </div>
       </div>
