@@ -73,9 +73,9 @@ export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDe
           </div>
         </div>
       </div>
-      <Tabs defaultValue='SHIPMENT_DETAILS' className=''>
-        <div className='flex w-full justify-between'>
-        <TabsList className='h-auto w-[350px] gap-2 bg-transparent'>
+      <Tabs defaultValue='SHIPMENT_DETAILS' className='gap-2'>
+        <div className='flex justify-between items-center'>
+        <TabsList className='h-auto w-full gap-2 bg-transparent'>
           {tabs.map(tab => (
             <TabsTrigger
               key={tab.value}
@@ -94,7 +94,7 @@ export default function TabsUnderlineDemo({ selectedProNumber }: TabsUnderlineDe
             </TabsTrigger>
           ))}
         </TabsList>
-        <p className='text-blue-300'>+ ADD ASSIGNMENT</p>
+        <p className='uppercase'>+ Add assignment</p>
         </div>
 
         {tabs.map(tab => (

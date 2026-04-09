@@ -5,12 +5,10 @@ import type { ColDef } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { AgGridProvider, AgGridReact } from 'ag-grid-react';
 import { themeQuartz } from "ag-grid-community";
-import type { ShipmentList } from './TableTypes';
+import type { ShipmentList, TableComponentProps } from './TableTypes';
 import ShipmentListData from '../../../../JsonData/ShipmentList.json';
 
-type TableComponentProps = {
-  onProSelected?: (proNumber: string) => void;
-};
+
 
 const TableComponent = ({ onProSelected }: TableComponentProps) => {
   const gridRef = useRef<AgGridReact<ShipmentList>>(null);
@@ -54,9 +52,11 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
 
   const handleRowClick = useCallback((event: any) => {
     const proNumber = event.data?.proNumber;
+    console.log('proNumber:', proNumber);
+    console
     if (proNumber && onProSelected) {
       onProSelected(proNumber);
-    }
+        }
   }, [onProSelected]);
 
   return (
@@ -75,7 +75,7 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
           </div>
         </div>
         <AgGridReact<ShipmentList>
-           ref={gridRef}
+          ref={gridRef}
           theme={theme}
           rowData={rowData}
           columnDefs={colDefs}

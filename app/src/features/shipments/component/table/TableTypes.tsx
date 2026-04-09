@@ -11,3 +11,7 @@ export type ShipmentList = {
         huCount: number,
         weight: number,
 };
+
+export type TableComponentProps = {
+  onProSelected?: (proNumber: string) => void;
+};

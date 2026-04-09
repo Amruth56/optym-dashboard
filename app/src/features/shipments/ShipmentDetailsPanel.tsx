@@ -1,16 +1,10 @@
 import React from "react";
 import { ShipmentDetail, ShipmentDetailsPanelProps, ShipmentTableRow } from "./ShipmentsTypes";
 
-const InfoRow = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number | null;
-}) => (
-  <div className="flex justify-between gap-4 text-sm mb-1">
+const InfoRow = ({ label, value }: { label: string; value: string | number | null }) => (
+  <div className="flex justify-between gap-4 text-sm text-slate-300">
     <span className="text-slate-400">{label}</span>
-    <span className="font-bold text-white">{value || "--"}</span>
+    <span className="font-medium text-white">{value || "--"}</span>
   </div>
 );
 
@@ -57,33 +51,15 @@ export default function ShipmentDetailsPanel({
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-3xl bg-slate-950/80 p-5">
-              <InfoRow
-                label="Pickup Date"
-                value={shipment.pickupDate || "--"}
-              />
-              <InfoRow label="Pro Number" value={shipment.proNumber || "--"} />
-              <InfoRow
-                label="Due Date"
-                value={shipment.deliverySchedule?.dueDate || "--"}
-              />
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Pickup date</p>
+              <p className="mt-3 text-2xl font-semibold text-white">{shipment.pickupDate}</p>
             </div>
-            <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
-              <InfoRow
-                label="Current terminal"
-                value={shipment?.currentTerminal}
-              />
-              <InfoRow
-                label="Next terminal"
-                value={shipment?.nextTerminal || "--"}
-              />
-              <InfoRow
-                label="Shipment Status"
-                value={shipment?.clientShipmentStatus?.displayName || "--"}
-              />
-              <InfoRow label="Location" value={shipment?.location} />
+            <div className="rounded-3xl bg-slate-950/80 p-5">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Due date</p>
+              <p className="mt-3 text-2xl font-semibold text-white">{shipment.deliverySchedule.dueDate}</p>
             </div>
           </div>
-        </section>
+          </section>
 
 {/* shipper and consignee section */}
         <section className="space-y-4">
