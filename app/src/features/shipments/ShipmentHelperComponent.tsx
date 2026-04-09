@@ -1,6 +1,5 @@
 import { ShipmentTableRow } from "./ShipmentsTypes";
 
-
 export const shipmentTableRows: ShipmentTableRow[] = [
   {
     pc: 1,
@@ -25,8 +24,13 @@ export const shipmentTableRows: ShipmentTableRow[] = [
   },
 ];
 
-
-export const InfoRow = ({ label, value }: { label: string; value: string | number | null }) => (
+export const InfoRow = ({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number | null;
+}) => (
   <div className="flex justify-between gap-4 text-sm text-slate-300">
     <span className="text-slate-400">{label}</span>
     <span className="font-medium text-white">{value || "--"}</span>

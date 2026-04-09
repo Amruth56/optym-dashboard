@@ -7,7 +7,6 @@ import TabsUnderlineDemo from "./component/tabs/TabsComponent";
 import TableComponent from "./component/table/TableComponent";
 import { ShipmentCardData } from "./ShipmentHelperComponent";
 
-
 const shipmentsPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -31,7 +30,7 @@ const shipmentsPage = () => {
         router.push(`/shipments?pro=${encodeURIComponent(proNumber)}`);
       }
     },
-    [router, selectedProNumber]
+    [router, selectedProNumber],
   );
 
   return (

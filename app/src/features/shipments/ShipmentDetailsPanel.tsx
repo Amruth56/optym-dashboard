@@ -5,7 +5,6 @@ import { shipmentTableRows, InfoRow } from "./ShipmentHelperComponent";
 export default function ShipmentDetailsPanel({
   shipment,
 }: ShipmentDetailsPanelProps) {
-
   return (
     <div className="space-y-6">
       <div className="grid gap-4">
@@ -38,24 +37,18 @@ export default function ShipmentDetailsPanel({
               <InfoRow label="Location" value={shipment?.location} />
             </div>
           </div>
-          </section>
+        </section>
 
-{/* shipper and consignee section */}
+        {/* shipper and consignee section */}
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-3xl bg-slate-950/80 p-5">
-              <InfoRow
-                label="Shipper"
-                value={shipment.shipper.name || "--"}
-              />
+              <InfoRow label="Shipper" value={shipment.shipper.name || "--"} />
               <InfoRow
                 label="Shipper Address"
                 value={`${shipment?.shipper?.address || ""}, ${shipment?.shipper?.city}, ${shipment?.shipper?.state} ${shipment?.shipper?.zip}`}
               />
-              <InfoRow
-                label="Order #"
-                value={shipment.purchaseOrder || "--"}
-              />
+              <InfoRow label="Order #" value={shipment.purchaseOrder || "--"} />
               <InfoRow
                 label="Shipper #"
                 value={shipment.shipper.number || "--"}
@@ -79,8 +72,7 @@ export default function ShipmentDetailsPanel({
         </section>
       </div>
 
-      
-{/* shipment table */}
+      {/* shipment table */}
       <section className="rounded-md border border-white/10 bg-[#06101c]/80 p-5">
         <div className="overflow-x-auto  no-scrollbar">
           <table className="min-w-full border-collapse text-sm text-slate-300">
@@ -97,18 +89,28 @@ export default function ShipmentDetailsPanel({
             </thead>
             <tbody>
               {shipmentTableRows.map((row, index) => (
-                <tr
-                  key={index}
-                >
+                <tr key={index}>
                   <td className="border-b border-white/10 px-4 py-3 font-semibold text-white">
                     {row.pc ?? ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.hm || ""}</td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.pkg || ""}</td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.description || ""}</td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.class ?? ""}</td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.weight ?? ""}</td>
-                  <td className="border-b border-white/10 px-4 py-3">{row.rate ?? ""}</td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.hm || ""}
+                  </td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.pkg || ""}
+                  </td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.description || ""}
+                  </td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.class ?? ""}
+                  </td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.weight ?? ""}
+                  </td>
+                  <td className="border-b border-white/10 px-4 py-3">
+                    {row.rate ?? ""}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -124,19 +126,16 @@ export default function ShipmentDetailsPanel({
                 label="Original Terminal"
                 value={shipment.originTerminal || "--"}
               />
-              <InfoRow label="Destination Terminal" value={shipment.destinationTerminal || "--"} />
+              <InfoRow
+                label="Destination Terminal"
+                value={shipment.destinationTerminal || "--"}
+              />
               <InfoRow
                 label="Trailer"
                 value={shipment?.trailerNumber || "--"}
               />
-              <InfoRow
-                label="BOL #"
-                value={shipment?.bolNumber || "--"}
-              />
-              <InfoRow
-                label="Terms"
-                value={shipment?.terms || "--"}
-              />
+              <InfoRow label="BOL #" value={shipment?.bolNumber || "--"} />
+              <InfoRow label="Terms" value={shipment?.terms || "--"} />
             </div>
             <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
               <InfoRow
@@ -158,8 +157,6 @@ export default function ShipmentDetailsPanel({
             </div>
           </div>
         </section>
-
-        
       </div>
     </div>
   );

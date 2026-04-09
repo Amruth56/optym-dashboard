@@ -1,17 +1,16 @@
-
 export type AssignedTo = {
   assignedToId: string;
   assignedToName: string;
-}
+};
 
-export type  LocationPoint = {
+export type LocationPoint = {
   displayName: string;
   locationType: string;
   id: string;
   name: string;
   trailerNumber: string | null;
   manifestNumber: string | null;
-}
+};
 
 export type LifeCycleStep = {
   state: string;
@@ -22,13 +21,13 @@ export type LifeCycleStep = {
   destination: LocationPoint;
   estimatedStartTime: string | null;
   estimatedEndTime: string | null;
-}
+};
 
 export type ActivityItem = {
   timeLabel: string | null;
   label: string;
   metaLabel: string | null;
-}
+};
 
 export type ShipmentDetail = {
   proNumber: string;
@@ -101,11 +100,11 @@ export type ShipmentDetail = {
     fixedTrailer: number;
   };
   trailerNumber: string | null;
-}
+};
 
 export type ShipmentDetailsPanelProps = {
   shipment: ShipmentDetail;
-}
+};
 
 export type ShipmentTableRow = {
   pc?: string | number | null;

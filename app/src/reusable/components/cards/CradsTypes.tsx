@@ -1,4 +1,4 @@
 export type CardType = {
-    number: string;
-    description: string;
-}
+  number: string;
+  description: string;
+};
