@@ -68,6 +68,9 @@ export type ShipmentDetail = {
   };
   assignedToName: string | null;
   timeToComplete: number;
+  lhLoadTo: string | null;
+  lhDoor: string | null;
+  lhLoadType: string | null;
   cityRouteName: string;
   recommendedLoadingZone: string;
   stopSequence: number;
@@ -103,3 +106,13 @@ export type ShipmentDetail = {
 export type ShipmentDetailsPanelProps = {
   shipment: ShipmentDetail;
 }
+
+export type ShipmentTableRow = {
+  pc?: string | number | null;
+  hm?: string | null;
+  pkg?: string | null;
+  description?: string | null;
+  class?: string | number | null;
+  weight?: string | number | null;
+  rate?: string | number | null;
+};
