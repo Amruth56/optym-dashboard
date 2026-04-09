@@ -1,6 +1,6 @@
 import ShipmentDetailsPage from '@/app/src/features/shipments/ShipmentDetailsPage'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import ShipmentDetails from '../../../JsonData/ShipmentDetail.json'
+import ShipmentDetails from '../../../../JsonData/ShipmentDetail.json'
 
 
 const tabs = [
@@ -43,7 +43,7 @@ export default function TabsUnderlineDemo() {
     const route = currentStep ? `${currentStep.origin.displayName} → ${currentStep.destination.displayName}` : "--";
 
   return (
-    <div className='w-full max-w-3xl  bg-gray-900 p-4 text-white'>
+    <div className='w-full max-w-xl  bg-gray-900 p-4 text-white'>
        <div className="flex flex-wrap items-center gap-3 text-xs uppercase ">
               <span className="font-semibold text-white text-3xl">PRO {ShipmentDetails.proNumber}</span>
               <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">{ShipmentDetails.taskStatus}</span>

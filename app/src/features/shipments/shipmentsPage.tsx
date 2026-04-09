@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "../../reusable/components/Navbar";
 import CardsComponent from "../../reusable/components/cards/CardsComponent";
-import TabsUnderlineDemo from "../../reusable/components/tabs/TabsComponent";
+import TabsUnderlineDemo from "./component/tabs/TabsComponent";
+import TableComponent from "./component/table/TableComponent";
 
 const ShipmentCardData = [
   {
@@ -37,7 +38,10 @@ const shipmentsPage = () => {
        
       ))}
        </div>
+       <div className="flex gap-2">
+        <TableComponent/>
        <TabsUnderlineDemo/>
+       </div>
     </div>
   );
 };
