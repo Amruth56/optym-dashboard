@@ -7,4 +7,4 @@ describe("Home Page", () => {
 
         expect(screen.getByText("Hiii")).toBeInTheDocument();
     })
-} )
+});
