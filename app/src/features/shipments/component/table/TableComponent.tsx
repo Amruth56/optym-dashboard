@@ -65,7 +65,6 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
     (event: any) => {
       const proNumber = event.data?.proNumber;
       console.log("proNumber:", proNumber);
-      console;
       if (proNumber && onProSelected) {
         onProSelected(proNumber);
       }

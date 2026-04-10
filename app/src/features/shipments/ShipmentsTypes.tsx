@@ -115,3 +115,8 @@ export type ShipmentTableRow = {
   weight?: string | number | null;
   rate?: string | number | null;
 };
+
+export type InfoRowTypes = {
+  label: string;
+  value: string | number | null;
+}

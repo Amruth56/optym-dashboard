@@ -1,4 +1,14 @@
-import { ShipmentTableRow } from "./ShipmentsTypes";
+import { ShipmentTableRow, InfoRowTypes } from "./ShipmentsTypes";
+
+export const InfoRow = ({
+  label,
+  value,
+}: InfoRowTypes) => (
+  <div className="flex justify-between gap-4 text-sm text-slate-300">
+    <span className="text-slate-400">{label}</span>
+    <span className="font-medium text-white">{value || "--"}</span>
+  </div>
+);
 
 export const shipmentTableRows: ShipmentTableRow[] = [
   {
@@ -23,19 +33,6 @@ export const shipmentTableRows: ShipmentTableRow[] = [
     rate: "",
   },
 ];
-
-export const InfoRow = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number | null;
-}) => (
-  <div className="flex justify-between gap-4 text-sm text-slate-300">
-    <span className="text-slate-400">{label}</span>
-    <span className="font-medium text-white">{value || "--"}</span>
-  </div>
-);
 
 export const ShipmentCardData = [
   {
