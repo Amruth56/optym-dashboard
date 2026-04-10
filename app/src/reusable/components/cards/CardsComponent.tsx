@@ -11,3 +11,5 @@ const CardsComponent = ({ number, description }: CardType) => {
 };
 
 export default CardsComponent;
+
+
