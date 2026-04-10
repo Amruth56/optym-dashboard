@@ -91,7 +91,7 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
               onInput={TextFilter}
               className="border rounded-md border-gray-400 p-2"
             />
-            <button onClick={handleExportCSV} className=" cursor-pointer p-2">
+            <button aria-label="Export CSV" onClick={handleExportCSV} className=" cursor-pointer p-2">
               <DownloadIcon />
             </button>
           </div>
