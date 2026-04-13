@@ -1,21 +1,54 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  "Home",
-  "Doors/Bays",
-  "Bays",
-  "Trailers",
-  "Loads",
-  "Shipments",
-  "Workers",
-  "Jockeys",
-  "Yard",
-  "Settings",
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Doors",
+    href: "/doors",
+  },
+  {
+    label: "Bays",
+    href: "/bays",
+  },
+  {
+    label: "Trailers",
+    href: "/trailers",
+  },
+  {
+    label: "Loads",
+    href: "/loads",
+  },
+  {
+    label: "Shipments",
+    href: "/shipments",
+  },
+  {
+    label: "Workers",
+    href: "/workers",
+  },
+  {
+    label: "Jockeys",
+    href: "/jockeys",
+  },
+  {
+    label: "Yard",
+    href: "/yard",
+  },
+  {
+    label: "Settings",
+    href: "/settings",
+  },
 ];
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [currentTime, setCurrentTime] = useState(
     new Date().toLocaleTimeString(),
   );
@@ -35,10 +68,23 @@ const Navbar = () => {
           <div className="flex justify-between items-center w-full">
             <div className="flex gap-4">
               <h1 className="font-bold text-blue-500 text-3xl">O</h1>
-              <nav className="gap-4 flex items-center ml-2 cursor-pointer">
-                {navItems.map((item, index) => (
-                  <a key={index}>{item.toUpperCase()}</a>
-                ))}
+              <nav className="flex items-center gap-4 ml-2">
+                {
+                  navItems.map((item, index) => {
+                    const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                    return (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        className={`  ${
+                          isActive ? "bg-blue-300 text-blue-900 py-1  px-3  rounded-md" : "text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })
+                }
               </nav>
             </div>
 
