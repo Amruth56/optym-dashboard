@@ -42,18 +42,38 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
       { field: "loadTo", headerName: "LOAD TO" },
       { field: "status", headerName: "STATUS" },
       { field: "location", headerName: "LOCATION" },
-      { field: "dueDate", 
-        headerName:"ETA",
-       },
+      {
+        field: "dueDate",
+        headerName: "ETA",
+        valueFormatter: (params: any) => {
+          const dueDate = params.value;
+          const closeTime = params.data?.closeTime;
+
+          if (dueDate === null || dueDate === undefined || dueDate === "") {
+            return "--";
+          }
+
+          const date = new Date(dueDate);
+          if (isNaN(date.getTime())) {
+            return "--";
+          }
+
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const year = String(date.getFullYear()).slice(-2);
+
+          return `${month}/${year} ${closeTime || "--"}`;
+        },
+      },
       { field: "trailerNumber", headerName: "TRAILER " },
       { field: "huCount", headerName: "# HUS" },
-      { field: "weight",
-        headerName:"WEIGHT",
-        valueFormatter:(params:any) => {
-          const value= params.value;
-          return Number(value).toLocaleString("en-US")
-        }
-       },
+      {
+        field: "weight",
+        headerName: "WEIGHT",
+        valueFormatter: (params: any) => {
+          const value = params.value;
+          return Number(value).toLocaleString("en-US");
+        },
+      },
     ],
     [],
   );
@@ -63,15 +83,15 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
     sortable: true,
     filter: true,
     resizable: true,
-     valueFormatter: (params: any) => {
-    const value = params.value;
+    valueFormatter: (params: any) => {
+      const value = params.value;
 
-    if (value === null ||  value === "") {
-      return "--";
-    }
+      if (value === null) {
+        return "--";
+      }
 
-    return value;
-  },
+      return value;
+    },
   };
 
   const TextFilter = useCallback(() => {
@@ -93,10 +113,44 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
   );
 
   const handleExportCSV = useCallback(() => {
-    gridRef.current?.api.exportDataAsCsv({
-      fileName: "shipment_list.csv",
-    });
-  }, []);
+  gridRef.current?.api.exportDataAsCsv({
+    fileName: "shipment_list.csv",
+    processCellCallback: (params: any): string => {
+      const colId = params.column.getColId();
+
+      if (colId === "dueDate") {
+        const dueDate = params.node?.data?.dueDate;
+        const closeTime = params.node?.data?.closeTime;
+
+        if (dueDate === null || dueDate === "") {
+          return "--";
+        }
+
+        const date = new Date(dueDate);
+        if (isNaN(date.getTime())) {
+          return "--";
+        }
+
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = String(date.getFullYear()).slice(-2);
+        
+        return `${month}/${year} ${closeTime || "--"}`;
+      }
+
+      const value = params.value;
+
+      if (value === null || value === undefined || value === "") {
+        return "--";
+      }
+
+      if (colId === "weight") {
+        return Number(value).toLocaleString("en-US");
+      }
+
+      return String(value);
+    },
+  });
+}, []);
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
@@ -111,7 +165,11 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
               onInput={TextFilter}
               className="border rounded-md border-gray-400 p-2"
             />
-            <button aria-label="Export CSV" onClick={handleExportCSV} className=" cursor-pointer p-2">
+            <button
+              aria-label="Export CSV"
+              onClick={handleExportCSV}
+              className=" cursor-pointer p-2"
+            >
               <DownloadIcon />
             </button>
           </div>
@@ -130,6 +188,3 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
 };
 
 export default TableComponent;
-
-
-
