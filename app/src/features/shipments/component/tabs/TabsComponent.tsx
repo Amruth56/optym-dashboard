@@ -7,7 +7,7 @@ import { IconTruck, IconUser, IconMapPin } from "@tabler/icons-react"
 export default function TabsUnderlineDemo({
   selectedProNumber,
 }: TabsUnderlineDemoProps) {
-  const currentStep = ShipmentDetails.lifeCycleSteps?.[0];
+  const currentStep = ShipmentDetails?.lifeCycleSteps?.[0];
   const route = currentStep
     ? `${currentStep.origin.displayName} → ${currentStep.destination.displayName}`
     : "--";
@@ -30,19 +30,19 @@ export default function TabsUnderlineDemo({
               Current Assignment |{" "}
               <span className="text-white">
                 {" "}
-                {ShipmentDetails.lifeCycleSteps?.[0]?.action} |{" "}
-                {ShipmentDetails.lifeCycleSteps?.[0]?.info}{" "}
+                {currentStep?.action} |{" "}
+                {currentStep?.info}{" "}
               </span>
             </h1>
             <div className="flex flex-wrap gap-3 text-sm text-slate-300">
               <span><IconMapPin className="w-4 h-6 inline-block mr-2" />{route}</span>
               <span>•</span>
-              <span> <IconTruck className="w-4 h-6 inline-block mr-2" />{ShipmentDetails?.lifeCycleSteps?.[0]?.info}</span>
+              <span> <IconTruck className="w-4 h-6 inline-block mr-2" />{currentStep?.info}</span>
               <span>•</span>
               <span>
                 <IconUser className="w-4 h-6 inline-block mr-2" />
                 {
-                  ShipmentDetails.lifeCycleSteps?.[0]?.assignedTo?.[0]
+                  currentStep?.assignedTo?.[0]
                     ?.assignedToName
                 }
               </span>
