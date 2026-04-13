@@ -14,7 +14,7 @@ export default function TabsUnderlineDemo({
   const proNumberLabel = selectedProNumber ?? ShipmentDetails.proNumber;
 
   return (
-    <div className="w-full max-w-2xl max-h-220 overflow-y-auto bg-gray-800/50 p-4 text-white overflow-hidden">
+    <div className="w-full max-w-2xl max-h-screen overflow-y-auto bg-gray-800/50 p-4 text-white overflow-hidden">
       <div className="flex flex-wrap items-center gap-3 text-xs uppercase mb-1">
         <span className="font-semibold text-white text-3xl">
           PRO {proNumberLabel}
