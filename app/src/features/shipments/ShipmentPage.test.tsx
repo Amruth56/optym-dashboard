@@ -47,9 +47,12 @@ describe("ShipmentsPage", () => {
   it("renders shipment cards", () => {
     render(<ShipmentsPage />);
 
+    expect(screen.getByText("5.3")).toBeInTheDocument();
     expect(screen.getByText("Overall Bills /Hr")).toBeInTheDocument();
     expect(screen.getByText("Load Average: Loading and Closed")).toBeInTheDocument();
     expect(screen.getByText("Closed Load Average")).toBeInTheDocument();
+    expect(screen.getByText("# Dockers Working")).toBeInTheDocument();
+    expect(screen.getByText("Dockers Unassigned")).toBeInTheDocument();
   });
 
   it("does not show tabs initially", () => {
