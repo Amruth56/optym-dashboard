@@ -13,6 +13,7 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.41.1",
     "ag-grid-react": "^35.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

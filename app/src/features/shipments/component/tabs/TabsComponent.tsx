@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ShipmentDetails from "../../../../JsonData/ShipmentDetail.json";
 import { TabsData } from "./TabsHelperComponent";
 import { TabsUnderlineDemoProps } from "./TabsTypes";
+import { IconTruck, IconUser, IconMapPin } from "@tabler/icons-react"
 
 export default function TabsUnderlineDemo({
   selectedProNumber,
@@ -34,11 +35,12 @@ export default function TabsUnderlineDemo({
               </span>
             </h1>
             <div className="flex flex-wrap gap-3 text-sm text-slate-300">
-              <span>{route}</span>
+              <span><IconMapPin className="w-4 h-6 inline-block mr-2" />{route}</span>
               <span>•</span>
-              <span>{ShipmentDetails?.lifeCycleSteps?.[0]?.info}</span>
+              <span> <IconTruck className="w-4 h-6 inline-block mr-2" />{ShipmentDetails?.lifeCycleSteps?.[0]?.info}</span>
               <span>•</span>
               <span>
+                <IconUser className="w-4 h-6 inline-block mr-2" />
                 {
                   ShipmentDetails.lifeCycleSteps?.[0]?.assignedTo?.[0]
                     ?.assignedToName
@@ -49,7 +51,7 @@ export default function TabsUnderlineDemo({
 
           <div className="grid gap-2 sm:grid-rows-2">
             <span className="text-sm text-slate-300">4 mins remaining</span>
-            <span className="text-blue-300 flex justify-end">CHANGE</span>
+            <span className="text-blue-300 flex justify-end text-sm">CHANGE</span>
           </div>
         </div>
       </div>
