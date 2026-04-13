@@ -24,7 +24,7 @@ describe("ShipmentDetailsPanel", () => {
         renderComponent();
 
         expect(screen.getByText("Current terminal")).toBeInTheDocument();
-        expect(screen.getAllByText("FTW")).toHaveLength(2); // Current terminal and Shipper Address
+        expect(screen.getAllByText("FTW")).toHaveLength(2); 
 
         expect(screen.getByText("Next terminal")).toBeInTheDocument();
         expect(screen.getAllByText("--").length).toBeGreaterThan(0);;

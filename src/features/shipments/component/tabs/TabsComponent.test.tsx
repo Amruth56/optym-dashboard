@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect, beforeEach } from "vitest";
 import TabsComponent from "./TabsComponent";
 
@@ -16,6 +17,10 @@ describe("Tabs Component", () => {
     expect(screen.getByText(/Unloading/i)).toBeInTheDocument();
   });
 
+  it("renders add assignment ", () => {
+    expect(screen.getByText("+ Add assignment")).toBeInTheDocument();
+  })
+
   it("renders selected Pro Number data", () => {
     expect(screen.getByText(/Current Assignment/i)).toBeInTheDocument();
     expect(screen.getByText(/Load to Trailer/i)).toBeInTheDocument();
@@ -28,4 +33,23 @@ describe("Tabs Component", () => {
     expect(screen.getByText(/Door 47/i)).toBeInTheDocument();
     expect(screen.getByText(/Richard G/i)).toBeInTheDocument();
   });
+
+  it("renders all the tab triggers", () => {
+    expect(screen.getByText("SHIPMENT DETAILS")).toBeInTheDocument();
+    expect(screen.getByText("PHOTOS")).toBeInTheDocument();
+    expect(screen.getByText("ACTIVITY")).toBeInTheDocument();
+  });
+
+  it("render shipment details tab as the default active tab", () => {
+    expect(screen.getByText(/Current Assignment/i)).toBeInTheDocument();
+  });
+
+  it("Switch betweeen the tabs", async () => {
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("tab", { name: /PHOTOS/i }));
+    expect(screen.getByText(/Photos content goes here/i)).toBeInTheDocument();
+  });
+
+
+
 });
