@@ -86,7 +86,7 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
     valueFormatter: (params: any) => {
       const value = params.value;
 
-      if (value === null) {
+      if (value === null || value === undefined || value === "") {
         return "--";
       }
 
@@ -113,44 +113,45 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
   );
 
   const handleExportCSV = useCallback(() => {
-  gridRef.current?.api.exportDataAsCsv({
-    fileName: "shipment_list.csv",
-    processCellCallback: (params: any): string => {
-      const colId = params.column.getColId();
+    gridRef.current?.api.exportDataAsCsv({
+      fileName: "shipment_list.csv",
+      processCellCallback: (params: any): string => {
+        const colId = params.column.getColId();
 
-      if (colId === "dueDate") {
-        const dueDate = params.node?.data?.dueDate;
-        const closeTime = params.node?.data?.closeTime;
+        if (colId === "dueDate") {
+          const dueDate = params.node?.data?.dueDate;
+          const closeTime = params.node?.data?.closeTime;
 
-        if (dueDate === null || dueDate === "") {
+          if (dueDate === null || dueDate === "" || dueDate === undefined) {
+            return "--";
+          }
+
+          const date = new Date(dueDate);
+          if (isNaN(date.getTime())) {
+            return "--";
+          }
+
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const year = String(date.getFullYear()).slice(-2);
+          const formatted = `${month}/${year} ${closeTime || "--"}`;
+
+          return `="${formatted}"`;
+        }
+
+        const value = params.value;
+
+        if (value === null || value === undefined || value === "") {
           return "--";
         }
 
-        const date = new Date(dueDate);
-        if (isNaN(date.getTime())) {
-          return "--";
+        if (colId === "weight") {
+          return Number(value).toLocaleString("en-US");
         }
 
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = String(date.getFullYear()).slice(-2);
-        
-        return `${month}/${year} ${closeTime || "--"}`;
-      }
-
-      const value = params.value;
-
-      if (value === null || value === undefined || value === "") {
-        return "--";
-      }
-
-      if (colId === "weight") {
-        return Number(value).toLocaleString("en-US");
-      }
-
-      return String(value);
-    },
-  });
-}, []);
+        return String(value);
+      },
+    });
+  }, []);
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
