@@ -8,75 +8,33 @@ import React, {
   useRef,
 } from "react";
 import type { ColDef } from "ag-grid-community";
-import { AllCommunityModule } from "ag-grid-community";
+import { AllCommunityModule, themeQuartz } from "ag-grid-community";
 import { AgGridProvider, AgGridReact } from "ag-grid-react";
-import { themeQuartz } from "ag-grid-community";
-import type { ShipmentList, TableComponentProps } from "./TableTypes";
+import type { ShipmentList, TableComponentProps, OriginFilter } from "./TableTypes";
 import ShipmentListData from "../../../../JsonData/ShipmentList.json";
 import { DownloadIcon } from "lucide-react";
+import {
+  theme,
+  colDefsData,
+  formatDefaultValue,
+  createTextFilter,
+  createRowClickHandler,
+  createExportCSVHandler,
+  createExternalFilterChanged,
+  createIsExternalFilterPresent,
+  createDoesExternalFilterPass,
+} from "./TableHelperComponent";
+
 
 const TableComponent = ({ onProSelected }: TableComponentProps) => {
-  const gridRef = useRef<AgGridReact<ShipmentList>>(null);
-  const [rowData] = useState<ShipmentList[]>(
-    ShipmentListData as ShipmentList[],
-  );
+  const [originFilter, setOriginFilter] = useState<OriginFilter>("All");
 
-  const theme = themeQuartz.withParams(
-    {
-      backgroundColor: "#000000",
-      browserColorScheme: "dark",
-    },
-    "dark",
-  );
+  const gridRef = useRef<AgGridReact<ShipmentList>>(null);
+  const [rowData] = useState<ShipmentList[]>(ShipmentListData as ShipmentList[]);
 
   useEffect(() => {
     document.body.dataset.agThemeMode = "dark";
   }, []);
-
-  const colDefs = useMemo<ColDef<ShipmentList>[]>(
-    () => [
-      { field: "proNumber", headerName: "PRO " },
-      { field: "manifestNumber", headerName: "MANIFEST" },
-      { field: "origin", headerName: "ORIGIN" },
-      { field: "destination", headerName: "DEST" },
-      { field: "loadTo", headerName: "LOAD TO" },
-      { field: "status", headerName: "STATUS" },
-      { field: "location", headerName: "LOCATION" },
-      {
-        field: "dueDate",
-        headerName: "ETA",
-        valueFormatter: (params: any) => {
-          const dueDate = params.value;
-          const closeTime = params.data?.closeTime;
-
-          if (dueDate === null || dueDate === undefined || dueDate === "") {
-            return "--";
-          }
-
-          const date = new Date(dueDate);
-          if (isNaN(date.getTime())) {
-            return "--";
-          }
-
-          const month = String(date.getMonth() + 1).padStart(2, "0");
-          const year = String(date.getFullYear()).slice(-2);
-
-          return `${month}/${year} ${closeTime || "--"}`;
-        },
-      },
-      { field: "trailerNumber", headerName: "TRAILER " },
-      { field: "huCount", headerName: "# HUS" },
-      {
-        field: "weight",
-        headerName: "WEIGHT",
-        valueFormatter: (params: any) => {
-          const value = params.value;
-          return Number(value).toLocaleString("en-US");
-        },
-      },
-    ],
-    [],
-  );
 
   const defaultColDef: ColDef<ShipmentList> = {
     flex: 1,
@@ -84,97 +42,72 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
     filter: true,
     resizable: true,
     valueFormatter: (params: any) => {
-      const value = params.value;
-
-      if (value === null || value === undefined || value === "") {
-        return "--";
-      }
-
-      return value;
+      return formatDefaultValue(params.value);
     },
   };
 
-  const TextFilter = useCallback(() => {
-    const value =
-      (document.getElementById("filter-text-box") as HTMLInputElement)?.value ??
-      "";
-    gridRef.current?.api.setGridOption("quickFilterText", value);
-  }, []);
+  const colDefs = useMemo<ColDef<ShipmentList>[]>(
+  () => colDefsData,
+  [],
+);
 
-  const handleRowClick = useCallback(
-    (event: any) => {
-      const proNumber = event.data?.proNumber;
-      console.log("proNumber:", proNumber);
-      if (proNumber && onProSelected) {
-        onProSelected(proNumber);
-      }
-    },
-    [onProSelected],
-  );
+  const TextFilter = useCallback(createTextFilter(gridRef), []);
 
-  const handleExportCSV = useCallback(() => {
-    gridRef.current?.api.exportDataAsCsv({
-      fileName: "shipment_list.csv",
-      processCellCallback: (params: any): string => {
-        const colId = params.column.getColId();
+  const handleRowClick = useCallback(createRowClickHandler(onProSelected), [onProSelected]);
 
-        if (colId === "dueDate") {
-          const dueDate = params.node?.data?.dueDate;
-          const closeTime = params.node?.data?.closeTime;
+  const handleExportCSV = useCallback(createExportCSVHandler(gridRef), []);
 
-          if (dueDate === null || dueDate === "" || dueDate === undefined) {
-            return "--";
-          }
+  const externalFilterChanged = useCallback(createExternalFilterChanged(setOriginFilter, gridRef), []);
 
-          const date = new Date(dueDate);
-          if (isNaN(date.getTime())) {
-            return "--";
-          }
+  const isExternalFilterPresent = useCallback(createIsExternalFilterPresent(originFilter), [originFilter]);
 
-          const month = String(date.getMonth() + 1).padStart(2, "0");
-          const year = String(date.getFullYear()).slice(-2);
-          const formatted = `${month}/${year} ${closeTime || "--"}`;
-
-          return `="${formatted}"`;
-        }
-
-        const value = params.value;
-
-        if (value === null || value === undefined || value === "") {
-          return "--";
-        }
-
-        if (colId === "weight") {
-          return Number(value).toLocaleString("en-US");
-        }
-
-        return String(value);
-      },
-    });
-  }, []);
+  const doesExternalFilterPass = useCallback(createDoesExternalFilterPass(originFilter), [originFilter]);
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
-      <div className=" w-full text-white" style={{ height: "100vh" }}>
-        <div className="flex justify-between p-2 bg-black">
+      <div className="w-full text-white" style={{ height: "100vh" }}>
+        <div className="flex justify-between bg-black p-2">
           <h1 className="text-3xl">2500 Shipments</h1>
-          <div className="gap-2 flex justify-between">
+
+          <div className="flex justify-between gap-2">
             <input
               type="text"
               id="filter-text-box"
               placeholder="Search"
               onInput={TextFilter}
-              className="border rounded-md border-gray-400 p-2"
+              className="rounded-md border border-gray-400 p-2"
             />
             <button
               aria-label="Export CSV"
               onClick={handleExportCSV}
-              className=" cursor-pointer p-2"
+              className="cursor-pointer p-2"
             >
               <DownloadIcon />
             </button>
           </div>
         </div>
+
+  <div className="test-header flex items-center gap-6 border-b border-gray-800 px-2">
+  {(["All", "FTW", "SPM", "NLI", "HST"] as OriginFilter[]).map((filter) => {
+    const isSelected = originFilter === filter;
+
+    return (
+      <button
+        key={filter}
+        type="button"
+        onClick={() => externalFilterChanged(filter)}
+        className={`border-b-2 px-1 py-3 text-sm font-semibold tracking-wide transition-colors cursor-pointer ${
+          isSelected
+            ? "border-blue-500 text-blue-500"
+            : "border-transparent text-gray-400 hover:text-white"
+        }`}
+      >
+        {filter}
+      </button>
+    );
+  })}
+</div>
+
         <AgGridReact<ShipmentList>
           ref={gridRef}
           theme={theme}
@@ -182,6 +115,8 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
           columnDefs={colDefs}
           defaultColDef={defaultColDef}
           onRowClicked={handleRowClick}
+          isExternalFilterPresent={isExternalFilterPresent}
+          doesExternalFilterPass={doesExternalFilterPass}
         />
       </div>
     </AgGridProvider>

@@ -15,3 +15,5 @@ export type ShipmentList = {
 export type TableComponentProps = {
   onProSelected?: (proNumber: string) => void;
 };
+
+export type OriginFilter = "All" | "FTW" | "SPM" | "NLI" | "HST";

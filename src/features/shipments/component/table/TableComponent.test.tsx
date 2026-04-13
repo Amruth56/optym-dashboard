@@ -52,7 +52,9 @@ describe("TableComponent", () => {
 
     expect(screen.getByText("2500 Shipments")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
-    expect(screen.getByRole("button", {name:"Export CSV"})).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Export CSV" }),
+    ).toBeInTheDocument();
   });
 
   it("sets ag theme mode to dark on mount", () => {
@@ -72,12 +74,14 @@ describe("TableComponent", () => {
   it("calls exportDataAsCsv when export button is clicked", () => {
     render(<TableComponent onProSelected={vi.fn()} />);
 
-    const button = screen.getByRole("button", {name: "Export CSV"});
+    const button = screen.getByRole("button", { name: "Export CSV" });
     fireEvent.click(button);
 
-    expect(exportDataAsCsvMock).toHaveBeenCalledWith({
-      fileName: "shipment_list.csv",
-    });
+    expect(exportDataAsCsvMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fileName: "shipment_list.csv",
+      }),
+    );
   });
 
   it("calls onProSelected when a row is clicked", () => {

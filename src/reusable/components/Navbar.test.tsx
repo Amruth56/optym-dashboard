@@ -1,26 +1,30 @@
-import {render, screen} from '@testing-library/react';
-import Navbar from './Navbar';
+import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
+import Navbar from "./Navbar";
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/shipments",
+}));
 
 const navItems = [
-    "HOME",
-    "DOORS/BAYS",
-    "BAYS",
-    "TRAILERS",
-    "LOADS",
-    "SHIPMENTS",
-    "WORKERS",
-    "JOCKEYS",
-    "YARD",
-    "SETTINGS",
+  "Home",
+  "Doors",
+  "Bays",
+  "Trailers",
+  "Loads",
+  "Shipments",
+  "Workers",
+  "Jockeys",
+  "Yard",
+  "Settings",
 ];
 
 describe("Navbar", () => {
-    it("renders all nav items", () => {
-        render(<Navbar/>);
+  it("renders all nav items", () => {
+    render(<Navbar />);
 
-        navItems.forEach((item, index) => {
-            expect(screen.getByText(item)).toBeInTheDocument();
-        });
+    navItems.forEach((item) => {
+      expect(screen.getByText(item)).toBeInTheDocument();
     });
+  });
 });
