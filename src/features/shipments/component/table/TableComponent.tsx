@@ -88,7 +88,7 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
         </div>
 
   <div className="test-header flex items-center gap-6 border-b border-gray-800 px-2">
-  {(["All", "FTW", "SPM", "NLI", "HST"] as OriginFilter[]).map((filter) => {
+  {(["All", "FTW", "SPM", "NLI", "HST", "FAR", "SLC", "NOL"] as OriginFilter[]).map((filter) => {
     const isSelected = originFilter === filter;
 
     return (
@@ -98,8 +98,8 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
         onClick={() => externalFilterChanged(filter)}
         className={`border-b-2 px-1 py-3 text-sm font-semibold tracking-wide transition-colors cursor-pointer ${
           isSelected
-            ? "border-blue-500 text-blue-500"
-            : "border-transparent text-gray-400 hover:text-white"
+            ? "border-blue-300 text-blue-300"
+            : "border-transparent  hover:text-white"
         }`}
       >
         {filter}

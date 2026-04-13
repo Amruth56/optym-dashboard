@@ -13,32 +13,32 @@ export const theme = themeQuartz.withParams(
 );
 
 export const colDefsData: ColDef<ShipmentList>[] = [
-    { field: "proNumber", headerName: "PRO" },
-    { field: "manifestNumber", headerName: "MANIFEST" },
-    { field: "origin", headerName: "ORIGIN" },
-    { field: "destination", headerName: "DEST" },
-    { field: "loadTo", headerName: "LOAD TO" },
-    { field: "status", headerName: "STATUS" },
-    { field: "location", headerName: "LOCATION" },
-    {
-      field: "dueDate",
-      headerName: "ETA",
-      valueFormatter: (params: any) => {
-        const dueDate = params.value;
-        const closeTime = params.data?.closeTime;
-        return formatDueDate(dueDate, closeTime);
-      },
+  { field: "proNumber", headerName: "PRO" },
+  { field: "manifestNumber", headerName: "MANIFEST" },
+  { field: "origin", headerName: "ORIGIN" },
+  { field: "destination", headerName: "DEST" },
+  { field: "loadTo", headerName: "LOAD TO" },
+  { field: "status", headerName: "STATUS" },
+  { field: "location", headerName: "LOCATION" },
+  {
+    field: "dueDate",
+    headerName: "ETA",
+    valueFormatter: (params: any) => {
+      const dueDate = params.value;
+      const closeTime = params.data?.closeTime;
+      return formatDueDate(dueDate, closeTime);
     },
-    { field: "trailerNumber", headerName: "TRAILER" },
-    { field: "huCount", headerName: "# HUS" },
-    {
-      field: "weight",
-      headerName: "WEIGHT",
-      valueFormatter: (params: any) => {
-        return formatWeight(params.value);
-      },
+  },
+  { field: "trailerNumber", headerName: "TRAILER" },
+  { field: "huCount", headerName: "# HUS" },
+  {
+    field: "weight",
+    headerName: "WEIGHT",
+    valueFormatter: (params: any) => {
+      return formatWeight(params.value);
     },
-  ];
+  },
+];
 
 export const formatDueDate = (
   dueDate: string | null | undefined,
@@ -161,6 +161,9 @@ export const createDoesExternalFilterPass = (originFilter: OriginFilter) => {
       case "SPM":
       case "NLI":
       case "HST":
+      case "FAR":
+      case "SLC":
+      case "NOL":
         return data.origin === originFilter;
       case "All":
       default:

@@ -16,4 +16,4 @@ export type TableComponentProps = {
   onProSelected?: (proNumber: string) => void;
 };
 
-export type OriginFilter = "All" | "FTW" | "SPM" | "NLI" | "HST";
+export type OriginFilter = "All" | "FTW" | "SPM" | "NLI" | "HST" | "FAR" | "SLC" | "NOL";
