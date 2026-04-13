@@ -80,8 +80,8 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
 
   return (
     <AgGridProvider modules={[AllCommunityModule]}>
-      <div className=" w-full" style={{ height: "100vh" }}>
-        <div className="flex justify-between p-2">
+      <div className=" w-full text-white" style={{ height: "100vh" }}>
+        <div className="flex justify-between p-2 bg-black">
           <h1 className="text-3xl">2500 Shipments</h1>
           <div className="gap-2 flex justify-between">
             <input

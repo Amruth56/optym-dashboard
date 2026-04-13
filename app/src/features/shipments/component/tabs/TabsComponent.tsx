@@ -13,16 +13,16 @@ export default function TabsUnderlineDemo({
   const proNumberLabel = selectedProNumber ?? ShipmentDetails.proNumber;
 
   return (
-    <div className="w-full max-w-xl  bg-gray-900 p-4 text-white overflow-hidden">
-      <div className="flex flex-wrap items-center gap-3 text-xs uppercase ">
+    <div className="w-full max-w-2xl  bg-gray-800/50 p-4 text-white overflow-hidden">
+      <div className="flex flex-wrap items-center gap-3 text-xs uppercase mb-1">
         <span className="font-semibold text-white text-3xl">
           PRO {proNumberLabel}
         </span>
-        <span className="rounded-md bg-emerald-500 text-black px-3 py-1 font-semibold ">
+        <span className="rounded-sm bg-green-400 text-black px-3 py-2 font-semibold ">
           {ShipmentDetails.taskStatus}
         </span>
       </div>
-      <div className="mb-6 rounded-md border border-white/10 bg-gray-800 p-6">
+      <div className="mb-6 rounded-md border border-white/10 bg-slate-950/80 p-6">
         <div className="flex  gap-4 flex-row items-center justify-between">
           <div className="space-y-4">
             <h1 className="text-sm font-semibold tracking-tight text-gray-300">
@@ -47,15 +47,15 @@ export default function TabsUnderlineDemo({
             </div>
           </div>
 
-          <div className="grid gap-2 sm:grid-rows-2 ">
+          <div className="grid gap-2 sm:grid-rows-2">
             <span className="text-sm text-slate-300">4 mins remaining</span>
             <span className="text-blue-300 flex justify-end">CHANGE</span>
           </div>
         </div>
       </div>
       <Tabs defaultValue="SHIPMENT_DETAILS" className="gap-2">
-        <div className="flex justify-between items-center">
-          <TabsList className="h-auto w-full gap-2 bg-transparent">
+        <div className="flex justify-between items-center border-b border-gray-700/50">
+          <TabsList className="h-auto gap-4 bg-transparent">
             {TabsData.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -74,7 +74,7 @@ export default function TabsUnderlineDemo({
               </TabsTrigger>
             ))}
           </TabsList>
-          <p className="uppercase">+ Add assignment</p>
+          <p className="uppercase text-sm text-blue-400">+ Add assignment</p>
         </div>
 
         {TabsData.map((tab) => (

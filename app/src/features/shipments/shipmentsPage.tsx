@@ -34,8 +34,8 @@ const shipmentsPage = () => {
   );
 
   return (
-    <div>
-      <div className="grid grid-cols-5 gap-4 m-4">
+    <div className="bg-slate-950/18">
+      <div className="grid grid-cols-5 gap-4 p-2">
         {ShipmentCardData.map((card, index) => (
           <CardsComponent
             key={index}
@@ -44,7 +44,7 @@ const shipmentsPage = () => {
           />
         ))}
       </div>
-      <div className="flex gap-2">
+      <div className="flex ">
         <TableComponent onProSelected={handleProSelect} />
         {selectedProNumber ? (
           <TabsUnderlineDemo selectedProNumber={selectedProNumber} />

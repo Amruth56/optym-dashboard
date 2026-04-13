@@ -10,7 +10,7 @@ export default function ShipmentDetailsPanel({
       <div className="grid gap-4">
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-3xl bg-slate-950/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow
                 label="Pickup Date"
                 value={shipment.pickupDate || "--"}
@@ -21,7 +21,7 @@ export default function ShipmentDetailsPanel({
                 value={shipment.deliverySchedule?.dueDate || "--"}
               />
             </div>
-            <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow
                 label="Current terminal"
                 value={shipment?.currentTerminal}
@@ -42,7 +42,7 @@ export default function ShipmentDetailsPanel({
         {/* shipper and consignee section */}
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-3xl bg-slate-950/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow label="Shipper" value={shipment.shipper.name || "--"} />
               <InfoRow
                 label="Shipper Address"
@@ -54,7 +54,7 @@ export default function ShipmentDetailsPanel({
                 value={shipment.shipper.number || "--"}
               />
             </div>
-            <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow
                 label="Consignee"
                 value={shipment?.consignee?.name || "--"}
@@ -73,42 +73,42 @@ export default function ShipmentDetailsPanel({
       </div>
 
       {/* shipment table */}
-      <section className="rounded-md border border-white/10 bg-[#06101c]/80 p-5">
+      <section className="rounded-md bg-slate-950/80 p-5">
         <div className="overflow-x-auto  no-scrollbar">
           <table className="min-w-full border-collapse text-sm text-slate-300">
             <thead>
-              <tr className="border-b border-white/10   text-left text-xs uppercase tracking-[0.24em] font-bold">
-                <th className="px-4 py-3 w-12">PC</th>
-                <th className="px-4 py-3 w-14">HM</th>
-                <th className="px-4 py-3 w-14">PKG</th>
-                <th className="px-4 py-3">DESCRIPTION</th>
-                <th className="px-4 py-3 w-20">CLASS</th>
-                <th className="px-4 py-3 w-24">WEIGHT</th>
-                <th className="px-4 py-3 w-24">RATE</th>
+              <tr className="border-b border-white/10  text-left text-xs uppercase tracking-[0.24em] font-bold">
+                <th className="px-4 py-2 w-12">PC</th>
+                <th className="px-4 py-2 w-14">HM</th>
+                <th className="px-4 py-2 w-14">PKG</th>
+                <th className="px-4 py-2">DESCRIPTION</th>
+                <th className="px-4 py-2 w-20">CLASS</th>
+                <th className="px-4 py-2 w-24">WEIGHT</th>
+                <th className="px-4 py-2 w-24">RATE</th>
               </tr>
             </thead>
             <tbody>
               {shipmentTableRows.map((row, index) => (
                 <tr key={index}>
-                  <td className="border-b border-white/10 px-4 py-3 font-semibold text-white">
+                  <td className="border-b border-white/10 px-4 py-2 font-semibold text-white text-sm">
                     {row.pc ?? ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b border-white/10 px-4 py-2">
                     {row.hm || ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b border-white/10 px-4 py-2">
                     {row.pkg || ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b text-xs border-white/10 px-4 py-2">
                     {row.description || ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b border-white/10 px-4 py-2">
                     {row.class ?? ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b border-white/10 px-4 py-2">
                     {row.weight ?? ""}
                   </td>
-                  <td className="border-b border-white/10 px-4 py-3">
+                  <td className="border-b border-white/10 px-4 py-2">
                     {row.rate ?? ""}
                   </td>
                 </tr>
@@ -121,7 +121,7 @@ export default function ShipmentDetailsPanel({
       <div className="grid gap-2">
         <section className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-3xl bg-slate-950/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow
                 label="Original Terminal"
                 value={shipment.originTerminal || "--"}
@@ -137,7 +137,7 @@ export default function ShipmentDetailsPanel({
               <InfoRow label="BOL #" value={shipment?.bolNumber || "--"} />
               <InfoRow label="Terms" value={shipment?.terms || "--"} />
             </div>
-            <div className="grid gap-3 rounded-[24px] border border-white/10 bg-[#06101c]/80 p-5">
+            <div className="rounded-md bg-slate-950/80 p-5">
               <InfoRow
                 label="LH Load To and Type/Door"
                 value={`${shipment?.lhLoadTo || "--"} / ${shipment?.lhLoadType || "--"}`}

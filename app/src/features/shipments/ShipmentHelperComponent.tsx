@@ -40,10 +40,10 @@ export const ShipmentCardData = [
     description: "Overall Bills /Hr",
   },
   {
-    number: "9023",
+    number: "9,023",
     description: "Load Average: Loading and Closed",
   },
-  { number: "25412", description: "Closed Load Average" },
+  { number: "25,412", description: "Closed Load Average" },
   {
     number: "37",
     description: " # Dockers Working",
