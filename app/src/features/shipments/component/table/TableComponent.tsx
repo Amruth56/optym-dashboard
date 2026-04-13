@@ -35,23 +35,43 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
 
   const colDefs = useMemo<ColDef<ShipmentList>[]>(
     () => [
-      { field: "proNumber" },
-      { field: "manifestNumber" },
-      { field: "origin" },
-      { field: "destination" },
-      { field: "loadTo" },
-      { field: "status" },
-      { field: "location" },
-      { field: "dueDate" },
-      { field: "trailerNumber" },
-      { field: "huCount" },
-      { field: "weight" },
+      { field: "proNumber", headerName: "PRO " },
+      { field: "manifestNumber", headerName: "MANIFEST" },
+      { field: "origin", headerName: "ORIGIN" },
+      { field: "destination", headerName: "DEST" },
+      { field: "loadTo", headerName: "LOAD TO" },
+      { field: "status", headerName: "STATUS" },
+      { field: "location", headerName: "LOCATION" },
+      { field: "dueDate", 
+        headerName:"ETA",
+       },
+      { field: "trailerNumber", headerName: "TRAILER " },
+      { field: "huCount", headerName: "# HUS" },
+      { field: "weight",
+        headerName:"WEIGHT",
+        valueFormatter:(params:any) => {
+          const value= params.value;
+          return Number(value).toLocaleString("en-US")
+        }
+       },
     ],
     [],
   );
 
   const defaultColDef: ColDef<ShipmentList> = {
     flex: 1,
+    sortable: true,
+    filter: true,
+    resizable: true,
+     valueFormatter: (params: any) => {
+    const value = params.value;
+
+    if (value === null ||  value === "") {
+      return "--";
+    }
+
+    return value;
+  },
   };
 
   const TextFilter = useCallback(() => {
