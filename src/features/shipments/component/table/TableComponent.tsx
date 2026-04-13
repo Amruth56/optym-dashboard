@@ -51,6 +51,28 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
   [],
 );
 
+ const originCounts = useMemo(() => {
+  const counts: Record<OriginFilter, number> = {
+    All: rowData.length,
+    FTW: 0,
+    SPM: 0,
+    NLI: 0,
+    HST: 0,
+    FAR: 0,
+    SLC: 0,
+    NOL: 0,
+  }
+
+  rowData.forEach((item) => {
+    const origin = item.origin as OriginFilter;
+    if (origin in counts && origin !== "All") {
+      counts[origin] += 1;
+    }
+  });
+
+  return counts;
+}, [rowData]);
+
   const TextFilter = useCallback(createTextFilter(gridRef), []);
 
   const handleRowClick = useCallback(createRowClickHandler(onProSelected), [onProSelected]);
@@ -103,6 +125,9 @@ const TableComponent = ({ onProSelected }: TableComponentProps) => {
         }`}
       >
         {filter}
+        <span className="pl-3">
+          {originCounts[filter]}
+        </span>
       </button>
     );
   })}
