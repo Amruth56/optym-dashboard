@@ -12,7 +12,6 @@ const shipmentsPage = () => {
   const searchParams = useSearchParams();
 
   const selectedProNumber = useMemo(() => {
-    if (!searchParams) return null;
     const proParam = searchParams.get("pro");
     if (proParam) return proParam;
 
